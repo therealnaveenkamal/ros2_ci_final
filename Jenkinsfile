@@ -29,6 +29,9 @@ pipeline {
                 script {
                     dir('/home/user/ros2_ws/src/ros2_ci') {
                         sh 'sudo docker-compose up'
+                        MOVE_ID=$!
+                        sleep 60s
+                        kill $MOVE_ID
                     }
                 }
             }
