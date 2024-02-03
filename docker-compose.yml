@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  gazebo_setup:
+    image: tortoisebot-cp24:ros2
+    environment:
+      - DISPLAY=:2
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+  
+  waypoints_test:
+    image: tortoisebot-cp24:ros2
+    command: colcon test --packages-select tortoisebot_waypoints --event-handler=console_direct+
+    depends_on:
+      - gazebo_setup
