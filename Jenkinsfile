@@ -28,10 +28,17 @@ pipeline {
             steps {
                 script {
                     dir('/home/user/ros2_ws/src/ros2_ci') {
-                        sh 'sudo docker-compose up'
-                        MOVE_ID=$!
-                        sleep 60s
-                        kill $MOVE_ID
+                        sh 'sudo docker-compose up -d'
+                        sleep 60
+                    }
+                }
+            }
+        }
+        stage('Stop Docker Compose') {
+            steps {
+                script {
+                    dir('/home/user/ros2_ws/src/ros2_ci') {
+                        sh 'sudo docker-compose down'
                     }
                 }
             }
