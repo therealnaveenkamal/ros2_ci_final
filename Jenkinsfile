@@ -35,7 +35,8 @@ pipeline {
                             sh 'sudo docker-compose up'
                         }
                         catch (Throwable e) {
-                            echo "Caught ${e.toString()}"
+                            echo "Timeout gazebo ${e.toString()}"
+                            sh 'sudo docker-compose down'
                             currentBuild.result = "SUCCESS" 
                         }
                     }
