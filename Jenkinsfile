@@ -32,7 +32,7 @@ pipeline {
                 script {
                     dir('/home/user/ros2_ws/src/ros2_ci') {
                         try{
-                            sh 'sudo docker-compose up -d'
+                            sh 'sudo docker-compose up'
                         }
                         catch (Throwable e) {
                             echo "Caught ${e.toString()}"
