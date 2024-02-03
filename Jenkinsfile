@@ -30,13 +30,14 @@ pipeline {
             }
             steps {
                 script {
-                    try {
-                        dir('/home/user/ros2_ws/src/ros2_ci') {
+                    dir('/home/user/ros2_ws/src/ros2_ci') {
+                        try{
                             sh 'sudo docker-compose up -d'
                         }
-                    } catch (Throwable e) {
-                        echo "Caught ${e.toString()}"
-                        currentBuild.result = "SUCCESS" 
+                        catch (Throwable e) {
+                            echo "Caught ${e.toString()}"
+                            currentBuild.result = "SUCCESS" 
+                        }
                     }
                 }
             }
