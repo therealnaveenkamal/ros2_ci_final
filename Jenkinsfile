@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Run Docker Compose') {
             options {
-                timeout(time: 60, unit: "SECONDS")
+                timeout(time: 40, unit: "SECONDS")
             }
             steps {
                 script {
