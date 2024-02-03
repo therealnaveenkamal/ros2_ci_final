@@ -29,8 +29,14 @@ pipeline {
                 script {
                     dir('/home/user/ros2_ws/src/ros2_ci') {
                         sh 'sudo docker-compose up -d'
-                        sleep 60
                     }
+                }
+            }
+        }
+        stage('Wait for Docker Compose') {
+            steps {
+                timeout(time: 60, unit: 'SECONDS') {
+                    // Do nothing, just wait for the specified duration
                 }
             }
         }
